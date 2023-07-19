@@ -163,4 +163,3 @@ io.on('solved', () => {
 http.listen(port, () => {
     console.log(`Socket.IO server running at http://localhost:${port}/`);
 });
-
