@@ -30,9 +30,6 @@ function update() {
 let fill = "#858585";
 socket.on('solved', function() {
     fill = "#00AB1C";
-    setTimeout(() => {
-        location.reload()
-    }, 4000)
 });
 
 requestAnimationFrame(function draw() {
