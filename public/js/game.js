@@ -3,7 +3,8 @@ import socket from "/js/socket.js";
 export let k = window.innerWidth / 3;
 export let gridSize;
 export let grid;
-let canMove = 1;
+export let canMove = 1;
+export let turns = 0;
 
 socket.on('solved', function() {
     canMove = 0
@@ -41,6 +42,7 @@ function on(x2, y2) {
                 if (x2 > coun * gridSize && x2 < coun * gridSize + gridSize && y2 > count * gridSize && y2 < count * gridSize + gridSize && grid[count][coun] < 6) {
                     grid[count][coun]++;
                     if (!(grid[count][coun] % 6)) grid[count][coun] = 0;
+                    turns++;
                 }
             }
         }
