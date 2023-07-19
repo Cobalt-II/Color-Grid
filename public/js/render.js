@@ -1,13 +1,17 @@
 import {
     k,
     gridSize,
-    grid
+    grid,
+    canMove,
+    turns
 } from "/js/game.js";
 
 import socket from "/js/socket.js";
 
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
+let o = Date.now();
+let ka;
 
 canvas.oncontextmenu = function(e) {
     e.preventDefault();
@@ -58,6 +62,16 @@ requestAnimationFrame(function draw() {
             ctx.fillStyle = colors[grid[count][coun]];
             ctx.fillRect(coun * gridSize, count * gridSize, gridSize, gridSize)
         }
+    };
+    ctx.font = `20px arial`;
+    ctx.fillStyle = "#000000";
+    if (canMove) {
+    ctx.fillText(`${turns} moves made`, window.innerWidth / 2, 20);
+    ka = Date.now();
+    ctx.fillText('Time: ' + (ka - o) / 1000, window.innerWidth / 2, 40);
+    } else {
+    ctx.fillText(`Completed in ${turns} turns`, window.innerWidth / 2, 20);
+    ctx.fillText(`Completed in ${(ka - o) / 1000} seconds`, window.innerWidth / 2, 40);
     };
     requestAnimationFrame(draw);
 });
